@@ -16,7 +16,6 @@ namespace ServiceLocator.Wave
         [SerializeField] private UIService uiService;
         [SerializeField] private MapService mapService;
         [SerializeField] private SoundService soundService;
-        [SerializeField] private PlayerService playerService;
 
         [SerializeField] private WaveScriptableObject waveScriptableObject;
         private BloonPool bloonPool;
@@ -33,7 +32,7 @@ namespace ServiceLocator.Wave
 
         private void InitializeBloons()
         {
-            bloonPool = new BloonPool(playerService, this, soundService, waveScriptableObject);
+            bloonPool = new BloonPool(this, soundService, waveScriptableObject);
             activeBloons = new List<BloonController>();
         }
 

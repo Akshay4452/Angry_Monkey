@@ -7,7 +7,6 @@ namespace ServiceLocator.Wave.Bloon
 {
     public class BloonController
     {
-        private PlayerService playerService;
         private WaveService waveService;
         private SoundService soundService;
 
@@ -22,9 +21,8 @@ namespace ServiceLocator.Wave.Bloon
 
         public Vector3 Position => bloonView.transform.position;
 
-        public BloonController(PlayerService playerService, WaveService waveService, SoundService soundService, BloonView bloonPrefab, Transform bloonContainer)
+        public BloonController(WaveService waveService, SoundService soundService, BloonView bloonPrefab, Transform bloonContainer)
         {
-            this.playerService = playerService;
             this.waveService = waveService;
             this.soundService = soundService;
             bloonView = Object.Instantiate(bloonPrefab, bloonContainer);
@@ -93,7 +91,7 @@ namespace ServiceLocator.Wave.Bloon
         private void ResetBloon()
         {
             waveService.RemoveBloon(this);
-            playerService.TakeDamage(bloonScriptableObject.Damage);
+            PlayerService.Instance.TakeDamage(bloonScriptableObject.Damage);
             bloonView.gameObject.SetActive(false);
         }
 
@@ -112,7 +110,7 @@ namespace ServiceLocator.Wave.Bloon
             if (HasLayeredBloons())
                 SpawnLayeredBloons();
 
-            playerService.GetReward(bloonScriptableObject.Reward);
+            PlayerService.Instance.GetReward(bloonScriptableObject.Reward);
             waveService.RemoveBloon(this);
         }
 
