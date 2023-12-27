@@ -14,7 +14,6 @@ namespace ServiceLocator.Wave
     {
         [SerializeField] private EventService eventService;
         [SerializeField] private UIService uiService;
-        [SerializeField] private SoundService soundService;
 
         [SerializeField] private WaveScriptableObject waveScriptableObject;
         private BloonPool bloonPool;
@@ -22,6 +21,22 @@ namespace ServiceLocator.Wave
         private int currentWaveId;
         private List<WaveData> waveDatas;
         private List<BloonController> activeBloons;
+
+        public static WaveService Instance { get { return instance; } }
+
+        private static WaveService instance;
+
+        private void Awake()
+        {
+            if(instance == null)
+            {
+                instance = this;
+            } else
+            {
+                Destroy(this.gameObject);
+                Debug.LogError("Singleton of WaveService is trying to create second instance\n");
+            }
+        }
 
         private void Start()
         {
@@ -31,7 +46,7 @@ namespace ServiceLocator.Wave
 
         private void InitializeBloons()
         {
-            bloonPool = new BloonPool(this, soundService, waveScriptableObject);
+            bloonPool = new BloonPool(this, waveScriptableObject);
             activeBloons = new List<BloonController>();
         }
 
@@ -77,7 +92,7 @@ namespace ServiceLocator.Wave
             activeBloons.Remove(bloon);
             if (HasCurrentWaveEnded())
             {
-                soundService.PlaySoundEffects(Sound.SoundType.WaveComplete);
+                SoundService.Instance.PlaySoundEffects(Sound.SoundType.WaveComplete);
                 uiService.UpdateWaveProgressUI(currentWaveId, waveDatas.Count);
 
                 if(IsLevelWon())

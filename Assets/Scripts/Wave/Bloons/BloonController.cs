@@ -7,8 +7,6 @@ namespace ServiceLocator.Wave.Bloon
 {
     public class BloonController
     {
-        private WaveService waveService;
-        private SoundService soundService;
 
         private BloonView bloonView;
         private BloonScriptableObject bloonScriptableObject;
@@ -21,10 +19,8 @@ namespace ServiceLocator.Wave.Bloon
 
         public Vector3 Position => bloonView.transform.position;
 
-        public BloonController(WaveService waveService, SoundService soundService, BloonView bloonPrefab, Transform bloonContainer)
+        public BloonController(BloonView bloonPrefab, Transform bloonContainer)
         {
-            this.waveService = waveService;
-            this.soundService = soundService;
             bloonView = Object.Instantiate(bloonPrefab, bloonContainer);
             bloonView.Controller = this;
         }
@@ -65,7 +61,7 @@ namespace ServiceLocator.Wave.Bloon
             if (currentHealth <= 0 && currentState == BloonState.ACTIVE)
             {
                 PopBloon();
-                soundService.PlaySoundEffects(Sound.SoundType.BloonPop);
+                SoundService.Instance.PlaySoundEffects(Sound.SoundType.BloonPop);
             }
         }
 
@@ -90,7 +86,7 @@ namespace ServiceLocator.Wave.Bloon
 
         private void ResetBloon()
         {
-            waveService.RemoveBloon(this);
+            WaveService.Instance.RemoveBloon(this);
             PlayerService.Instance.TakeDamage(bloonScriptableObject.Damage);
             bloonView.gameObject.SetActive(false);
         }
@@ -111,12 +107,12 @@ namespace ServiceLocator.Wave.Bloon
                 SpawnLayeredBloons();
 
             PlayerService.Instance.GetReward(bloonScriptableObject.Reward);
-            waveService.RemoveBloon(this);
+            WaveService.Instance.RemoveBloon(this);
         }
 
         private bool HasLayeredBloons() => bloonScriptableObject.LayeredBloons.Count > 0;
 
-        private void SpawnLayeredBloons() => waveService.SpawnBloons(bloonScriptableObject.LayeredBloons,
+        private void SpawnLayeredBloons() => WaveService.Instance.SpawnBloons(bloonScriptableObject.LayeredBloons,
                                                                      bloonView.transform.position,
                                                                      currentWaypointIndex,
                                                                      bloonScriptableObject.LayerBloonSpawnRate);
