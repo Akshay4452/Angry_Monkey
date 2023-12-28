@@ -37,9 +37,18 @@ namespace ServiceLocator.Player
 
         public void Update()
         {
+            // For each balloon in range, shoot that balloon after looking at it... 
+            if(activeMonkeys.Count > 0)
+            {
+                foreach(MonkeyController controller in activeMonkeys)
+                {
+                    controller.UpdateMonkey();
+                }
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 UpdateSelectedMonkeyDisplay();
+
             }
         }
 

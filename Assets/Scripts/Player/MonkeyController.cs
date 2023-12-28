@@ -65,6 +65,15 @@ namespace ServiceLocator.Player
             }
         }
 
+        public void UpdateMonkey()
+        {
+            if(bloonsInRange.Count > 0)
+            {
+                RotateTowardsTarget(bloonsInRange[0]);
+                ShootAtTarget(bloonsInRange[0]);
+            }
+        }
+
         private void ResetAttackTimer() => attackTimer = monkeyScriptableObject.AttackRate;
     }
 }
