@@ -19,4 +19,4 @@ MonoBehaviour:
   Range: 3
   Cost: 50
   AttackableBloons: 0000000001000000
-  AttackRate: 1
+  AttackRate: 0.5
