@@ -3,6 +3,7 @@ using ServiceLocator.Player;
 using ServiceLocator.Sound;
 using ServiceLocator.UI;
 using ServiceLocator.Utilities;
+using ServiceLocator.Wave;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class GameService : GenericMonoSingleton<GameService>
     public PlayerService playerService { get; private set; }
     public SoundService soundService { get; private set; }
     public MapService mapService { get; private set; }
+    public WaveService waveService { get; private set; }
 
     [SerializeField] private UIService uIService;  // private reference of UIService class
 
@@ -20,6 +22,7 @@ public class GameService : GenericMonoSingleton<GameService>
     [SerializeField] public PlayerScriptableObject playerScriptableObject;
     [SerializeField] public SoundScriptableObject soundScriptableObject;
     [SerializeField] public MapScriptableObject mapScriptableObject;
+    [SerializeField] public WaveScriptableObject waveScriptableObject;
 
     [SerializeField] private AudioSource audioEffects;
     [SerializeField] private AudioSource backgroundMusic;
@@ -29,6 +32,7 @@ public class GameService : GenericMonoSingleton<GameService>
         playerService = new PlayerService(playerScriptableObject);
         soundService = new SoundService(soundScriptableObject, audioEffects, backgroundMusic);
         mapService = new MapService(mapScriptableObject);
+        waveService = new WaveService(waveScriptableObject);
     }
 
     private void Update()
