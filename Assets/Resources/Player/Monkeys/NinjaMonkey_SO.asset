@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e9f78841389ef74295702b371ae6a27, type: 3}
-  m_Name: Monkey_1_SO
+  m_Name: NinjaMonkey_SO
   m_EditorClassIdentifier: 
-  Type: 0
-  Prefab: {fileID: 534948837250446180, guid: a7b6d0649e9427c4682e70a84c411ca9, type: 3}
-  RotationSpeed: 100
-  projectileType: 0
+  Type: 1
+  Prefab: {fileID: 4153936676241517788, guid: eac174a2bed8bd64fbbfd2bb69b78b88, type: 3}
+  RotationSpeed: 150
+  projectileType: 1
   Range: 3
-  Cost: 50
+  Cost: 100
   AttackableBloons: 0000000001000000
-  AttackRate: 1
+  AttackRate: 0.5

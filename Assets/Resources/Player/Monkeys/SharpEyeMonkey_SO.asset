@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3934034ca108e1a4686f9b956731a07d, type: 3}
-  m_Name: Monkey_1_CellSO
+  m_Script: {fileID: 11500000, guid: 6e9f78841389ef74295702b371ae6a27, type: 3}
+  m_Name: SharpEyeMonkey_SO
   m_EditorClassIdentifier: 
   Type: 0
-  Name: Sharp Monkey
-  Sprite: {fileID: 21300000, guid: 682dc48054517a84dafdc7efd4a16f60, type: 3}
+  Prefab: {fileID: 534948837250446180, guid: a7b6d0649e9427c4682e70a84c411ca9, type: 3}
+  RotationSpeed: 100
+  projectileType: 0
+  Range: 3
   Cost: 50
+  AttackableBloons: 0000000001000000
+  AttackRate: 1
