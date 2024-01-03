@@ -12,8 +12,11 @@ namespace ServiceLocator.Player.Projectile
         private BloonController target;
         private ProjectileState currentState;
 
-        public ProjectileController(ProjectileView projectilePrefab, Transform projectileContainer)
+        private PlayerService playerService;
+
+        public ProjectileController(ProjectileView projectilePrefab, Transform projectileContainer, PlayerService playerService)
         {
+            this.playerService = playerService;
             projectileView = Object.Instantiate(projectilePrefab, projectileContainer);
             projectileView.SetController(this);
         }
@@ -62,7 +65,7 @@ namespace ServiceLocator.Player.Projectile
         {
             target = null;
             projectileView.gameObject.SetActive(false);
-            GameService.Instance.PlayerService.ReturnProjectileToPool(this);
+            playerService.ReturnProjectileToPool(this);
         }
 
         private void SetState(ProjectileState newState) => currentState = newState;
