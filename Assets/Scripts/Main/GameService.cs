@@ -19,7 +19,10 @@ namespace ServiceLocator.Main
         public PlayerService PlayerService { get; private set; }
 
         [SerializeField] private UIService uiService;
+        [SerializeField] private MapButton mapButton;
         public UIService UIService => uiService;
+
+        public MapButton MapButton => mapButton;
         
         // Scriptable Objects:
         [SerializeField] private MapScriptableObject mapScriptableObject;
@@ -52,6 +55,7 @@ namespace ServiceLocator.Main
             WaveService.Init(EventService, UIService, MapService, SoundService, PlayerService);
             MapService.Init(EventService);
             UIService.Init(EventService, WaveService, PlayerService);
+            MapButton.Init(EventService);
         }
 
         private void Update()
